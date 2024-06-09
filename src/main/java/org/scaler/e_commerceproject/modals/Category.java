@@ -1,10 +1,12 @@
 package org.scaler.e_commerceproject.modals;
 
+import jakarta.persistence.Entity;
 import lombok.Data;
 
 @Data
-public class Category {
-    private long id;
+@Entity
+public class Category extends BaseModal {
+
     private String title;
 
 }
