@@ -22,9 +22,9 @@ public class ProductController {
     @GetMapping("/{id}")
     public ResponseEntity<Product> getProductById(@PathVariable("id") long id) throws ProductNotFound {
 
-//          try{
+         Product p = ps.getProductById(id);
 //
-        return new ResponseEntity<>(ps.getProductById(id), HttpStatus.OK);
+        return new ResponseEntity<>(p, HttpStatus.OK);
 //     }  catch(ArithmeticException ae){
 //              return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
 //        }
@@ -33,7 +33,8 @@ public class ProductController {
 
     @GetMapping("/")
     public List<Product> getAllProducts(){
-        return List.of(ps.getAllProducts());
+          Product[] products = ps.getAllProducts();
+        return List.of(products);
     }
 
     @PostMapping("/")
