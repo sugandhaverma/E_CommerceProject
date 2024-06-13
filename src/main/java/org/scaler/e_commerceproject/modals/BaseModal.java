@@ -10,11 +10,11 @@ import java.util.Date;
 
 @Data
 @MappedSuperclass
-public class BaseModal {
+public abstract class BaseModal {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long id;
+    private Long id;
     private Date CreatedAt;
     private Date UpdatedAt;
 }

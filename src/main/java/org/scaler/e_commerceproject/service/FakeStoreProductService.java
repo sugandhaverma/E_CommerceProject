@@ -2,6 +2,7 @@ package org.scaler.e_commerceproject.service;
 
 import org.scaler.e_commerceproject.dtos.FakeStoreRequestDto;
 import org.scaler.e_commerceproject.dtos.FakeStoreResponseDto;
+import org.scaler.e_commerceproject.exception.ProductNotFound;
 import org.scaler.e_commerceproject.modals.Category;
 import org.scaler.e_commerceproject.modals.Product;
 import org.springframework.stereotype.Service;
@@ -18,11 +19,11 @@ public class FakeStoreProductService implements ProductService{
 
 
     @Override
-    public Product getProductById(long id) {
+    public Product getProductById(long id) throws ProductNotFound {
         FakeStoreResponseDto fdto =  restTemplate.getForObject("https://fakestoreapi.com/products/"+id, FakeStoreResponseDto.class);
 
         if(fdto == null){
-            return null;
+            throw new ProductNotFound("Product not found");
         }
         // if response is there convert the response into product...
 

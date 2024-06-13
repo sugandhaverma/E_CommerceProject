@@ -1,7 +1,9 @@
 package org.scaler.e_commerceproject.controller;
 
+import org.scaler.e_commerceproject.exception.ProductNotFound;
 import org.scaler.e_commerceproject.modals.Product;
 import org.scaler.e_commerceproject.service.ProductService;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -13,12 +15,12 @@ import java.util.List;
 public class ProductController {
     private ProductService ps;
 
-      public ProductController(ProductService productService){
+      public ProductController(@Qualifier("SelfProductService")ProductService productService){
         this.ps = productService;
    }
 
     @GetMapping("/{id}")
-    public ResponseEntity<Product> getProductById(@PathVariable("id") long id) {
+    public ResponseEntity<Product> getProductById(@PathVariable("id") long id) throws ProductNotFound {
 
 //          try{
 //
